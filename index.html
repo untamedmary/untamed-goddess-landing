@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untamed Goddess</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .landing-container {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-image {
+            position: absolute;
+            z-index: 5;
+            object-fit: contain;
+        }
+
+        .text-principal {
+            position: absolute;
+            z-index: 8;
+            object-fit: contain;
+            max-width: 90%;
+        }
+
+        .text-descriptivo {
+            position: absolute;
+            z-index: 8;
+            object-fit: contain;
+            max-width: 90%;
+        }
+
+        .text-lateral {
+            position: absolute;
+            z-index: 8;
+            object-fit: contain;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+
+        .boton-container {
+            position: absolute;
+            bottom: 3rem;
+            z-index: 20;
+            cursor: pointer;
+        }
+
+        .boton-img {
+            max-width: 400px;
+            width: 90%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .boton-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* DESKTOP */
+        @media (min-width: 1024px) {
+            .hero-image {
+                width: 35%;
+                height: 60%;
+                left: 8%;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .text-principal {
+                top: 15%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 45%;
+            }
+
+            .text-descriptivo {
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 45%;
+            }
+
+            .text-lateral {
+                right: 2%;
+                top: 35%;
+                height: 40%;
+                width: auto;
+            }
+
+            .boton-container {
+                width: 100%;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 1023px) {
+            .hero-image {
+                width: 60%;
+                height: 45%;
+                left: 50%;
+                top: 25%;
+                transform: translateX(-50%);
+            }
+
+            .text-principal {
+                top: 35%;
+                width: 85%;
+            }
+
+            .text-descriptivo {
+                top: 60%;
+                width: 85%;
+            }
+
+            .text-lateral {
+                display: none;
+            }
+
+            .boton-container {
+                width: 90%;
+            }
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .modal-text {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn-confirm {
+            background: #FF9500;
+            color: white;
+            flex: 1;
+        }
+
+        .modal-btn-confirm:hover {
+            background: #E68900;
+        }
+
+        .modal-btn-cancel {
+            background: #f0f0f0;
+            color: #333;
+            flex: 1;
+        }
+
+        .modal-btn-cancel:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="landing-container">
+    <!-- Fondo responsivo -->
+    <img class="background" id="background" alt="background">
+
+    <!-- Contenido -->
+    <div class="content">
+        <!-- Foto principal -->
+        <img class="hero-image" src="foto.png" alt="Untamed Goddess">
+
+        <!-- Texto principal -->
+        <img class="text-principal" src="texto_principal.png" alt="Artist Wild Goddess">
+
+        <!-- Texto descriptivo -->
+        <img class="text-descriptivo" src="texto_descriptivo.png" alt="I create things">
+
+        <!-- Texto lateral (solo desktop) -->
+        <img class="text-lateral" src="texto_lateral.png" alt="You already know">
+
+        <!-- Botón clickeable -->
+        <div class="boton-container" id="botonClickeable">
+            <img class="boton-img" src="boton_inferior.png" alt="Enter My World">
+        </div>
+    </div>
+</div>
+
+<!-- Modal 18+ -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <div class="modal-icon">⚠️</div>
+        <div class="modal-title">Adult Content</div>
+        <div class="modal-text">
+            This link contains explicit content.<br>You must be 18+ to continue.
+        </div>
+        <div class="modal-buttons">
+            <button class="modal-btn modal-btn-confirm" id="btnConfirm">I Am 18+</button>
+            <button class="modal-btn modal-btn-cancel" id="btnCancel">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Cargar fondos responsivos
+    function loadBackground() {
+        const bg = document.getElementById('background');
+        const isMobile = window.innerWidth < 1024;
+        if (isMobile) {
+            bg.src = 'FONDO_MOBILE.png';
+        } else {
+            bg.src = 'FONDO_DESKTOP.png';
+        }
+    }
+
+    // Cargar fondo al inicio
+    loadBackground();
+
+    // Recargar fondo al cambiar tamaño de ventana
+    window.addEventListener('resize', loadBackground);
+
+    // Variables globales
+    const botonClickeable = document.getElementById('botonClickeable');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const btnConfirm = document.getElementById('btnConfirm');
+    const btnCancel = document.getElementById('btnCancel');
+
+    // Tu link de Bouncy
+    const BOUNCY_LINK = 'https://bouncy.ai/untamedgoddess';
+
+    // Mostrar modal al clickear botón
+    botonClickeable.addEventListener('click', () => {
+        modalOverlay.classList.add('active');
+    });
+
+    // Confirmar 18+
+    btnConfirm.addEventListener('click', () => {
+        window.location.href = BOUNCY_LINK;
+    });
+
+    // Cerrar modal
+    btnCancel.addEventListener('click', () => {
+        modalOverlay.classList.remove('active');
+    });
+
+    // Cerrar modal al clickear fuera
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            modalOverlay.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>
