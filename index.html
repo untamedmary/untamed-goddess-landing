@@ -13,159 +13,144 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .landing {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .background-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-        }
-
-        .container {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-photo {
-            position: absolute;
-            z-index: 5;
-        }
-
-        .text-overlay {
-            position: absolute;
-            z-index: 8;
-        }
-
-        .button-cta {
-            position: absolute;
-            bottom: 2rem;
-            z-index: 20;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .button-cta:hover {
-            transform: scale(1.05);
-        }
-
-        .button-cta img {
-            display: block;
-            width: 100%;
+            background-color: #1a1a1a;
         }
 
         /* DESKTOP */
         @media (min-width: 1024px) {
-            .hero-photo {
-                left: 5%;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 35%;
-                max-width: 400px;
+            body {
+                background-image: url('FONDO_DESKTOP.png');
+                background-size: cover;
+                background-attachment: fixed;
             }
 
-            .hero-photo img {
-                width: 100%;
+            .landing-container {
+                min-height: 100vh;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                gap: 2rem;
+                padding: 3rem;
+            }
+
+            .left-section {
+                display: flex;
+                justify-content: center;
+            }
+
+            .hero-image {
+                width: 90%;
+                max-width: 400px;
                 height: auto;
             }
 
-            #text-principal {
-                top: 12%;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 50%;
+            .right-section {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                justify-content: center;
+                align-items: flex-start;
+                padding-right: 2rem;
             }
 
-            #text-descriptivo {
-                top: 48%;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 50%;
+            .text-principal {
+                width: 100%;
+                max-width: 500px;
             }
 
-            #text-lateral {
-                right: 1%;
-                top: 30%;
-                height: 50%;
+            .text-descriptivo {
+                width: 100%;
+                max-width: 500px;
             }
 
-            #text-lateral img {
-                height: 100%;
-                width: auto;
+            .text-lateral {
+                display: none;
             }
 
             .button-cta {
-                width: 400px;
-                left: 50%;
-                transform: translateX(-50%);
+                width: 100%;
+                max-width: 450px;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+            }
+
+            .button-cta:hover {
+                transform: scale(1.05);
             }
         }
 
         /* MOBILE */
         @media (max-width: 1023px) {
-            .hero-photo {
-                left: 50%;
-                top: 20%;
-                transform: translateX(-50%);
-                width: 70%;
-                max-width: 280px;
+            body {
+                background-image: url('FONDO_MOBILE.png');
+                background-size: cover;
+                background-attachment: scroll;
             }
 
-            .hero-photo img {
+            .landing-container {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                padding: 2rem 1rem;
+            }
+
+            .left-section {
                 width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .hero-image {
+                width: 90%;
+                max-width: 300px;
                 height: auto;
             }
 
-            #text-principal {
-                top: 40%;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 90%;
+            .right-section {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                align-items: center;
             }
 
-            #text-descriptivo {
-                top: 65%;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 90%;
+            .text-principal {
+                width: 100%;
+                max-width: 100%;
             }
 
-            #text-lateral {
+            .text-descriptivo {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .text-lateral {
                 display: none;
             }
 
             .button-cta {
-                width: 90%;
-                max-width: 350px;
-                left: 50%;
-                transform: translateX(-50%);
+                width: 100%;
+                max-width: 300px;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+            }
+
+            .button-cta:hover {
+                transform: scale(1.05);
             }
         }
 
-        .text-overlay img {
+        .text-principal img,
+        .text-descriptivo img,
+        .text-lateral img,
+        .button-cta img,
+        .hero-image {
+            display: block;
             width: 100%;
             height: auto;
-            display: block;
         }
 
         /* MODAL */
@@ -176,7 +161,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -193,7 +178,7 @@
             max-width: 450px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             animation: slideIn 0.3s ease;
         }
 
@@ -266,31 +251,22 @@
 </head>
 <body>
 
-<div class="landing">
-    <img class="background-img" id="bgImg" alt="background">
-    
-    <div class="container">
-        <!-- Hero Photo -->
-        <div class="hero-photo">
-            <img src="foto.png" alt="Goddess">
-        </div>
+<div class="landing-container">
+    <!-- Left Section -->
+    <div class="left-section">
+        <img class="hero-image" src="foto.png" alt="Goddess">
+    </div>
 
-        <!-- Text Principal -->
-        <div class="text-overlay" id="text-principal">
+    <!-- Right Section -->
+    <div class="right-section">
+        <div class="text-principal">
             <img src="texto_principal.png" alt="Artist Wild Goddess">
         </div>
 
-        <!-- Text Descriptivo -->
-        <div class="text-overlay" id="text-descriptivo">
+        <div class="text-descriptivo">
             <img src="texto_descriptivo.png" alt="I create things">
         </div>
 
-        <!-- Text Lateral -->
-        <div class="text-overlay" id="text-lateral">
-            <img src="texto_lateral.png" alt="You already know">
-        </div>
-
-        <!-- Button CTA -->
         <div class="button-cta" id="botonClickeable">
             <img src="boton_inferior.png" alt="Enter My World">
         </div>
@@ -313,19 +289,6 @@
 </div>
 
 <script>
-    // Load background based on screen size
-    function loadBackground() {
-        const bgImg = document.getElementById('bgImg');
-        if (window.innerWidth < 1024) {
-            bgImg.src = 'FONDO_MOBILE.png';
-        } else {
-            bgImg.src = 'FONDO_DESKTOP.png';
-        }
-    }
-
-    loadBackground();
-    window.addEventListener('resize', loadBackground);
-
     // Modal logic
     const botonClickeable = document.getElementById('botonClickeable');
     const modalOverlay = document.getElementById('modalOverlay');
